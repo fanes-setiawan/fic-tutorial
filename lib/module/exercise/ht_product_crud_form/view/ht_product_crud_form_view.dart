@@ -7,7 +7,7 @@ class HtProductCrudFormView extends StatefulWidget {
   15. ok, kita ingin agar form ini bisa mengedit file
   ! Mari tambahkan variabel ini:
 
-  final Map item;
+  final Map? item;
 
   ! lalu sesuaikan constructor-nya
   const HtProductCrudFormView({
@@ -18,8 +18,11 @@ class HtProductCrudFormView extends StatefulWidget {
   16. ok, bagus lanjut ke point 17
   buka HtProductCrudFormController
   */
+  final Map? item;
+
   const HtProductCrudFormView({
     Key? key,
+    this.item,
   }) : super(key: key);
 
   Widget build(context, HtProductCrudFormController controller) {
@@ -47,7 +50,40 @@ class HtProductCrudFormView extends StatefulWidget {
           child: Container(
             padding: const EdgeInsets.all(20.0),
             child: Column(
-              children: const [
+              children: [
+                QImagePicker(
+                  label: "Photo",
+                  hint: "Your photo",
+                  validator: Validator.required,
+                  value: controller.photo,
+                  onChanged: (value) {
+                    controller.photo = value;
+                  },
+                ),
+                QTextField(
+                  label: "Product Name",
+                  validator: Validator.required,
+                  value: controller.productName,
+                  onChanged: (value) {
+                    controller.productName = value;
+                  },
+                ),
+                QNumberField(
+                  label: "Price Name",
+                  validator: Validator.required,
+                  value: controller.price.toString(),
+                  onChanged: (value) {
+                    controller.price = double.parse(value);
+                  },
+                ),
+                QMemoField(
+                  label: "Description",
+                  validator: Validator.required,
+                  value: controller.description,
+                  onChanged: (value) {
+                    controller.description = value;
+                  },
+                ),
                 /*
                 TODO: --
                 2. buat variabel photo, productName dan price

@@ -26,6 +26,10 @@ class LsLoginFormWithHistoryController extends State<LsLoginFormWithHistoryView>
   doLogin() async {}
 
   loadLocalStorage() async {
+    email = await mainStorage.get("email") ?? "";
+    password = await mainStorage.get("password") ?? "";
+    ready = true;
+    setState(() {});
     /*
     TODO: --
     3. Ok, yuk kita ambil email dan password di storage,
@@ -52,6 +56,8 @@ class LsLoginFormWithHistoryController extends State<LsLoginFormWithHistoryView>
   }
 
   saveToLocalStorage() async {
+    mainStorage.put("email", email);
+    mainStorage.put("password", password);
     /*  
     7. Function ini akan selalu dipanggil ketika ada perubahan
     pada email dan password. 

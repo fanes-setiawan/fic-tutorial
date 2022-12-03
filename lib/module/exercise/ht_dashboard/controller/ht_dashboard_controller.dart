@@ -19,6 +19,9 @@ class HtDashboardController extends State<HtDashboardView>
     - Daftar Product
     - Daftar Product Categories
     */
+    await loadProducts();
+    await loadProductCategories();
+    setState(() {});
   }
 
   @override
@@ -100,6 +103,17 @@ class HtDashboardController extends State<HtDashboardView>
 
     3. Panggil setState setelah-nya
     */
+    var response = await Dio().get(
+      "${AppConfig.baseUrl}/products",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+        },
+      ),
+    );
+    Map obj = response.data;
+    productList = obj["data"];
+    setState(() {});
   }
 
   loadProductCategories() async {
@@ -119,5 +133,16 @@ class HtDashboardController extends State<HtDashboardView>
 
     6. Panggil setState setelah-nya
     */
+    var response = await Dio().get(
+      "${AppConfig.baseUrl}/product-categories",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+        },
+      ),
+    );
+    Map obj = response.data;
+    productCategoryList = obj["data"];
+    setState(() {});
   }
 }

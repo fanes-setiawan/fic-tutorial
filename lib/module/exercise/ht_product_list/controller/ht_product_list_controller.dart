@@ -85,5 +85,17 @@ class HtProductListController extends State<HtProductListView>
     Jika list-nya ter-refresh,
     Tasks ini selesai
     */
+    var response = await Dio().get(
+      "${AppConfig.baseUrl}/products",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+        },
+      ),
+    );
+    Map obj = response.data;
+    productList = obj["data"];
+    setState(() {});
+    setState(() {});
   }
 }

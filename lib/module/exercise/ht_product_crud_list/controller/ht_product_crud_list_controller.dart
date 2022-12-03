@@ -41,7 +41,6 @@ class HtProductCrudListController extends State<HtProductCrudListView>
 
     14. Buka HtProductCrudFormView , lanjut point 15
     */
-
     var response = await Dio().get(
       "${AppConfig.baseUrl}/products",
       options: Options(
@@ -74,6 +73,16 @@ class HtProductCrudListController extends State<HtProductCrudListView>
 
   delete(Map item) async {
     showLoading();
+    var id = item["id"];
+    var response = await Dio().delete(
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+        },
+      ),
+      "${AppConfig.baseUrl}/products/$id",
+    );
+    print(response.statusCode);
 
     //TODO: --
     /*

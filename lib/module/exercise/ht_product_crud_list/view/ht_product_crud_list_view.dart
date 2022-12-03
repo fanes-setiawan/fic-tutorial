@@ -120,12 +120,14 @@ class HtProductCrudListView extends StatefulWidget {
                       ));
                       controller.loadProducts();
                       ###
-
                       26. Nice, mari kita update tombol save
                       Agar bekerja untuk mengupdate dan juga menambahkan data baru
                       Buka HtProductCrudFormController:
                       lanjut ke point 27
                       */
+                      await Get.to(HtProductCrudFormView(
+                        item: item,
+                      ));
                     },
                     child: Card(
                       child: ListTile(

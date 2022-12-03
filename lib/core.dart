@@ -105,6 +105,7 @@ export 'package:example/module/exercise/ls_pos/controller/ls_pos_controller.dart
 export 'package:example/module/exercise/ls_pos/view/ls_pos_view.dart';
 export 'package:example/module/exercise/ls_pos_with_table_selection/controller/ls_pos_with_table_selection_controller.dart';
 export 'package:example/module/exercise/ls_pos_with_table_selection/view/ls_pos_with_table_selection_view.dart';
+export 'package:example/module/exercise/ls_pos_with_table_selection/widget/ls_pos_select_table.dart';
 export 'package:example/module/exercise/ls_product_crud/controller/ls_product_crud_controller.dart';
 export 'package:example/module/exercise/ls_product_crud/view/ls_product_crud_view.dart';
 export 'package:example/module/exercise/ls_user_setting/controller/ls_user_setting_controller.dart';

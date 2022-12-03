@@ -37,6 +37,8 @@ class LsPosController extends State<LsPosView> implements MvcController {
     Jika belum tambahkan di ProductCRUD (tasks sebelumnya)
     Cukup tambahkan 5 saja
     */
+    productList = mainStorage.get("products") ?? [];
+    setState(() {});
   }
 
   increaseQty(item) {
@@ -48,6 +50,8 @@ class LsPosController extends State<LsPosView> implements MvcController {
     setState(() {});
     ###
     */
+    item["qty"]++;
+    setState(() {});
   }
 
   decreaseQty(item) {
@@ -60,6 +64,9 @@ class LsPosController extends State<LsPosView> implements MvcController {
     setState(() {});
     ###
     */
+    if (item["qty"] == 0) return;
+    item["qty"]--;
+    setState(() {});
   }
 
   double get total {
@@ -74,6 +81,11 @@ class LsPosController extends State<LsPosView> implements MvcController {
     }
     ###
     */
+    for (var i = 0; i < productList.length; i++) {
+      var product = productList[i];
+      product["qty"] = product["qty"] ?? 0;
+      itemTotal += product["qty"] * product["price"];
+    }
     return itemTotal;
   }
 
@@ -113,6 +125,16 @@ class LsPosController extends State<LsPosView> implements MvcController {
     Lalu klik checkout, jika alert Your Order is Complete muncul,
     Maka task kamu sudah selesai!
     */
+    Map order = {
+      "created_at": DateTime.now(),
+      "customer": "-",
+      "payment_method": "Cash",
+      "total": total,
+      "items": productList,
+    };
+    List orders = await mainStorage.get("orders") ?? [];
+    orders.add(order);
+    mainStorage.put("orders", orders);
 
     emptyCart();
     await showInfoDialog("Your order is complete!");
